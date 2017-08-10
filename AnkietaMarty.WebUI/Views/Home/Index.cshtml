@@ -1,0 +1,143 @@
+﻿@model AnkietaMarty.WebUI.Models.QuestionaireViewModel
+
+@{
+    ViewBag.Title = "Na Ostrzu Igły";
+}
+
+<hr />
+<strong>
+    <p>Szanowny Respondencie !</p>
+    <p>Jesteśmy studentkami  pielęgniarstwa  i w ramach SKN Zdrowa Środowiskowego i Epidemiologii prowadzimy badania na temat częstotliwości oraz przyczyn ekspozycji zawodowej wśród studentów.</p>
+    <p>Ankieta jest anonimowa, a jej wypełnienie zajmie nie więcej niż 15 min</p>
+</strong>
+<hr />
+
+@using (var form = Html.Bootstrap().Begin(new Form().LabelWidthSm(6).InputWidthSm(6)))
+{
+    @Html.HiddenFor(x => x.User.UserId)
+
+    @form.FormGroup().DropDownListFor(x => x.User.UserSexId, Model.User.AllUserSex)
+    @form.FormGroup().DropDownListFor(x => x.User.MajorId, Model.User.AllMajors)
+    @form.FormGroup().DropDownListFor(x => x.User.StudyYearId, Model.User.AllStudyYears)
+
+    <hr />
+
+    @Html.Bootstrap().ValidationSummary()
+
+    for (int i = 0; i < Model.Questions.Count(); i++)
+    {
+        <div id="question-box-@i">
+            <p><strong>@string.Format("{0}. {1}", Model.Questions[i].Number, Model.Questions[i].Text)</strong></p>
+
+            @Html.HiddenFor(x => x.Questions[i].QuestionId)
+            @Html.HiddenFor(x => x.Questions[i].Number)
+            @Html.HiddenFor(x => x.Questions[i].Text)
+            @Html.HiddenFor(x => x.Questions[i].WithAnswerText)
+            
+            @(Html.Bootstrap()
+            .RadioButtonListFor(m => m.Questions[i].SelectedAnswerId, m => m.Questions[i].AvalivableAnswers, answer => answer.Value, answer => answer.Text))
+
+            @if (Model.Questions[i].WithAnswerText)
+            {
+                <br />
+                @Html.Bootstrap().TextBoxFor(x => x.Questions[i].AnswerText).Readonly(true)
+            }
+
+            <hr />
+        </div>
+    }
+
+    <div class="center-block">
+        @Html.Bootstrap().SubmitButton().Text("Zapisz ankietę").Style(ButtonStyle.Primary)
+    </div>
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        if ($("#Questions_6__SelectedAnswerId_0").is(":checked")) {
+            $("#question-box-7").show();
+            $("#question-box-8").show();
+            $("#question-box-9").show();
+            $("#question-box-10").show();
+            $("#question-box-11").show();
+
+            if ($("#Questions_9__SelectedAnswerId_0").is(":checked")) {
+                $("#question-box-10").show();
+                $("#question-box-11").hide();
+            }
+            else {
+                $("#question-box-10").hide();
+                $("#question-box-11").show();
+            }
+        }
+        else {
+            $("#question-box-7").hide();
+            $("#question-box-8").hide();
+            $("#question-box-9").hide();
+            $("#question-box-10").hide();
+            $("#question-box-11").hide();
+        }
+    });
+
+    $("input:radio").click(function () {
+
+        if ($("#Questions_0__SelectedAnswerId_1").is(":checked")) {
+            $("#Questions_0__AnswerText").removeAttr("readonly");
+        }
+        else {
+            $("#Questions_0__AnswerText").attr("readonly", "readonly");
+            $("#Questions_0__AnswerText").val("");
+        }
+
+        if ($("#Questions_4__SelectedAnswerId_2").is(":checked")) {
+            $("#Questions_4__AnswerText").removeAttr("readonly");
+        }
+        else {
+            $("#Questions_4__AnswerText").attr("readonly", "readonly");
+            $("#Questions_4__AnswerText").val("");
+        }
+
+        if ($("#Questions_8__SelectedAnswerId_4").is(":checked")) {
+            $("#Questions_8__AnswerText").removeAttr("readonly");
+        }
+        else {
+            $("#Questions_8__AnswerText").attr("readonly", "readonly");
+            $("#Questions_8__AnswerText").val("");
+        }
+
+        if ($("#Questions_9__SelectedAnswerId_1").is(":checked")) {
+            $("#Questions_9__AnswerText").removeAttr("readonly");
+        }
+        else {
+            $("#Questions_9__AnswerText").attr("readonly", "readonly");
+            $("#Questions_9__AnswerText").val("");
+        }
+
+
+        if ($("#Questions_6__SelectedAnswerId_0").is(":checked")) {
+            $("#question-box-7").show();
+            $("#question-box-8").show();
+            $("#question-box-9").show();
+            $("#question-box-10").show();
+            $("#question-box-11").show();
+
+            if ($("#Questions_9__SelectedAnswerId_0").is(":checked")) {
+                $("#question-box-10").show();
+                $("#question-box-11").hide();
+            }
+            else {
+                $("#question-box-10").hide();
+                $("#question-box-11").show();
+            }
+        }
+        else {
+            $("#question-box-7").hide();
+            $("#question-box-8").hide();
+            $("#question-box-9").hide();
+            $("#question-box-10").hide();
+            $("#question-box-11").hide();
+        }
+    });
+
+</script>

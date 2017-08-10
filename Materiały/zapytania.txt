@@ -1,0 +1,24 @@
+U jakiego procenta ankietowanych dosz³o do zak³ucia?
+Pyt 7. Procent Tak, procent Nie
+
+Czy zak³ucia przerwa¿a³y u p³ci mêskiej czy ¿eñskiej?
+Pyt 7. Z tych którzy odpowiedzieli tak, ile procent mêz / kobiet
+
+Na którym roku by³o ich wiêcej i jakim kierunku?
+Pyt 7. to samo co wy¿ej
+
+Jaka by³a g³ówna przyczyna zak³óæ?
+Pyt 9. Która z odpowiedzi najczêœciej
+
+Czy wsród osób zak³utych by³o szkolenie?
+Pyt 7 (tak) to czy czy w pyt 1. mia³y tak czy nie.
+
+Czy osoby które siê zak³u³y czy mia³y posêpowanie poekspozycyjne?
+Pyt 7 (tak) to ile procent wg pyt 12 odpowiedzia³o tak
+
+Czy osoby u których dosz³o do zak³ucia postêpowa³y zgodnie z zasadami?
+Pyt 7 (tak) to czy w pyt 3 jaka pad³a najczêœciej
+
+Podsumowanie zbiorcze
+
+  where (questionid = 7 AND avalivableanswerid = 63) OR  questionId = 12

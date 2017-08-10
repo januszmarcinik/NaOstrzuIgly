@@ -1,0 +1,21 @@
+﻿@using AnkietaMarty.Domain.Queries;
+@model List<Result>
+
+<br />
+
+@foreach (var result in Model)
+{
+    if (!string.IsNullOrEmpty(result.GroupName))
+    {
+        <h4>@result.GroupName</h4>
+    }
+
+    <ul>
+        @foreach(var item in result.Items)
+        { 
+            <li>@string.Format("{0} ({1}) - {2:N2}%", item.Name, item.Quantity, item.Percentage)</li>
+        }
+    </ul>
+
+    <hr />
+}

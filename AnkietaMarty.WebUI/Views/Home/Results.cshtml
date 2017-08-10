@@ -1,0 +1,40 @@
+﻿@using AnkietaMarty.WebUI.Models;
+@model List<ResultViewModel>
+
+@{
+    ViewBag.Title = "Wyniki ankiety";
+}
+
+<h2>Wyniki ankiety:</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th class="text-center">Odpowiedź</th>
+            <th class="text-center">Ilość odpowiedzi</th>
+            <th class="text-center">Wynik w %</th>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        <tr class="info">
+            <td colspan="3"></td>
+        </tr>
+        @foreach (var result in Model)
+        {
+            <tr>
+                <td colspan="3"><strong>@string.Format("{0}. {1}", result.QuestionNumber, result.Question)</strong></td>
+            </tr>
+            foreach (var answer in result.AnswersResults)
+            {
+                <tr>
+                    <td>@answer.AvalivableAnswerText</td>
+                    <td>@answer.Quantity</td>
+                    <td>@answer.Percentage.ToString("P0")</td>
+                </tr>
+            }
+            <tr class="info">
+                <td colspan="3"></td>
+            </tr>
+        }
+    </tbody>
+</table>
